@@ -97,3 +97,23 @@ const checkForSwitch = (iconSelect, gameList)=>{
   })
 
 }
+
+// fonction pour créer une collection (CREATE)
+const createDocument = async (collectionName, newObj) => {
+  console.log('createDocument', newObj)
+  const DocumentColRef = collection(db, collectionName);
+  const DocumentSnapshot = await addDoc(DocumentColRef, newObj);
+}
+
+const registerBTN = document.querySelector('#registerBTN')
+const username = document.querySelector('#inputUsername')
+const password = document.querySelector('#inputPassword')
+const img = document.querySelector('#inputPP')
+
+registerBTN.addEventListener('click', () => {
+    createDocument("users", {
+        name:  username.value, 
+        password: password.value,
+        img: img.value,
+    })
+})
